@@ -161,6 +161,23 @@ public class ItemServiceImpl implements ItemService {
         return itemsImgMapper.selectOne(itemsImg).getUrl();
     }
 
+    /**
+     * 扣减库存
+     *
+     * @param specId
+     * @param buyCounts
+     */
+    @Override
+    public void decreaseItemSpecStock(String specId, int buyCounts) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("specId",specId);
+        map.put("buyCounts",buyCounts);
+        int result = itemsSpecMapper.decreaseItemSpecStock(map);
+        if (result != 1){
+            throw new RuntimeException("创建订单失败，原因：库存不足");
+        }
+    }
+
     private PagedGridResult setterPagedGrid(List<?> list,Integer page){
         PageInfo<?> pageList = new PageInfo<>(list);
         PagedGridResult pagedGridResult = new PagedGridResult();
