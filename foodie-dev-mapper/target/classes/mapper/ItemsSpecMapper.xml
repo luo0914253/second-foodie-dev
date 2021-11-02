@@ -15,4 +15,14 @@
     <result column="created_time" property="createdTime" jdbcType="TIMESTAMP" />
     <result column="updated_time" property="updatedTime" jdbcType="TIMESTAMP" />
   </resultMap>
+  <update id="decreaseItemSpecStock" parameterType="map">
+    update
+      items_spec
+    set
+      stock = tock - #{map.buyCounts}
+    where
+      id = #{map.specId}
+    and
+     stock >= #{map.buyCounts}
+  </update>
 </mapper>
