@@ -7,6 +7,8 @@ import com.imooc.service.center.CenterUserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
@@ -42,6 +44,19 @@ public class CenterUserServiceImpl implements CenterUserService {
         users.setId(userId);
         users.setUpdatedTime(new Date());
         usersMapper.updateByPrimaryKeySelective(users);
+        return queryUserInfo(userId);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public Users updateUserFace(String userId, String faceUrl) {
+        Users updateUser = new Users();
+        updateUser.setId(userId);
+        updateUser.setFace(faceUrl);
+        updateUser.setUpdatedTime(new Date());
+
+        usersMapper.updateByPrimaryKeySelective(updateUser);
+
         return queryUserInfo(userId);
     }
 }

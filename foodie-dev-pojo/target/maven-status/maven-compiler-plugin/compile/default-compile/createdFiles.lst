@@ -10,6 +10,7 @@ com\imooc\pojo\vo\SearchItemsVO.class
 com\imooc\pojo\Users.class
 com\imooc\pojo\vo\SimpleItemVO.class
 com\imooc\pojo\vo\CommentLevelCountsVO.class
+com\imooc\pojo\bo\center\CenterUserBO.class
 com\imooc\pojo\bo\ShopcartBO.class
 com\imooc\pojo\bo\SubmitOrderBO.class
 com\imooc\pojo\Orders.class
